@@ -1,0 +1,104 @@
+{
+  "consumes": [
+    "application/json",
+    "multipart/form-data"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "swagger": "2.0",
+  "info": {
+    "description": "Documentation of your project API.\n\nSchemes:\nhttp\nhttps",
+    "title": "infoblog.",
+    "version": "1.0.0"
+  },
+  "basePath": "/",
+  "paths": {
+    "/pet": {
+      "post": {
+        "description": "Добавление петомца\nresponse:\n200: petAddResponse",
+        "tags": [
+          "pet"
+        ],
+        "operationId": "petAddRequest",
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/Pet"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "Category": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "ID"
+        },
+        "name": {
+          "type": "string",
+          "x-go-name": "Name"
+        }
+      },
+      "x-go-package": "studentgit.kata.academy/Nikolai/petstore/internal/modules/pet/storage"
+    },
+    "Pet": {
+      "type": "object",
+      "properties": {
+        "category": {
+          "$ref": "#/definitions/Category"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "ID"
+        },
+        "name": {
+          "type": "string",
+          "x-go-name": "Name"
+        },
+        "photoUrls": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "x-go-name": "PhotoUrls"
+        },
+        "status": {
+          "type": "string",
+          "x-go-name": "Status"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Category"
+          },
+          "x-go-name": "Tags"
+        }
+      },
+      "x-go-package": "studentgit.kata.academy/Nikolai/petstore/internal/modules/pet/storage"
+    }
+  },
+  "responses": {
+    "petAddResponse": {
+      "description": "",
+      "schema": {
+        "$ref": "#/definitions/Pet"
+      }
+    }
+  },
+  "securityDefinitions": {
+    "Bearer": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  }
+}
